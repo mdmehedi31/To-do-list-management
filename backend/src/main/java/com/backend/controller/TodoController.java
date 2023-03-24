@@ -29,7 +29,8 @@ public class TodoController {
 
     @PostMapping("/add/{userId}")
     public void addTodo(@PathVariable Long userId, @RequestBody TodoRequest todoRequest){
-        this.addTodoService.addTodo(userId,todoRequest);
+      Todo addTodo=  this.addTodoService.addTodo(userId,todoRequest);
+
     }
 
     @DeleteMapping("/delete/{userId}/{todoId}")

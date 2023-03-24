@@ -7,6 +7,7 @@ import com.backend.repository.UserRepository;
 import com.backend.request.TodoRequest;
 import com.backend.service.definition.AddTodoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.NoSuchElementException;
@@ -21,8 +22,11 @@ public class AddTodoServiceImpl implements AddTodoService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private SimpMessagingTemplate simpMessagingTemplate;
     @Override
-    public void addTodo(Long userId,TodoRequest todoRequest) {
+    public Todo addTodo(Long userId,TodoRequest todoRequest) {
 
 
         User user= this.userRepository.findById(userId).orElseThrow(()->new NoSuchElementException());
@@ -31,7 +35,10 @@ public class AddTodoServiceImpl implements AddTodoService {
         addTodo.setTodoTitle(todoRequest.getTodoTitle());
         addTodo.setTodoTask(todoRequest.getTodoTask());
         user.getTodoList().add(addTodo);
-        todoRepository.save(addTodo);
 
+        Todo todoAdd =todoRepository.save(addTodo);
+
+        simpMessagingTemplate.convertAndSend("/topic/todos", todoAdd);
+        return todoAdd;
     }
 }
