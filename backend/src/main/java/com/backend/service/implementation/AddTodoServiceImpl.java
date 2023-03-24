@@ -28,7 +28,6 @@ public class AddTodoServiceImpl implements AddTodoService {
         User user= this.userRepository.findById(userId).orElseThrow(()->new NoSuchElementException());
 
         Todo addTodo= new Todo();
-
         addTodo.setTodoTitle(todoRequest.getTodoTitle());
         addTodo.setTodoTask(todoRequest.getTodoTask());
         user.getTodoList().add(addTodo);
