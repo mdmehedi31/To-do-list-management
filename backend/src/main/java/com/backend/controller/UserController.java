@@ -1,7 +1,7 @@
 package com.backend.controller;
 
 
-import com.backend.dto.UserDto;
+import com.backend.request.UserRequest;
 import com.backend.entity.User;
 import com.backend.service.definition.CreateUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +16,9 @@ public class UserController {
 
 
     @PostMapping("/create")
-    public User createUser(@RequestBody UserDto userDto){
+    public User createUser(@RequestBody UserRequest userRequest){
 
-        return this.createUserService.createUser(userDto);
+        return this.createUserService.createUser(userRequest);
     }
 
     @GetMapping("/getuser/{username}")

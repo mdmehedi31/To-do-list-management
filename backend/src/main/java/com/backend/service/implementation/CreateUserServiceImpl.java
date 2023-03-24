@@ -1,6 +1,6 @@
 package com.backend.service.implementation;
 
-import com.backend.dto.UserDto;
+import com.backend.request.UserRequest;
 import com.backend.entity.User;
 import com.backend.repository.UserRepository;
 import com.backend.service.definition.CreateUserService;
@@ -16,14 +16,14 @@ public class CreateUserServiceImpl implements CreateUserService {
     private UserRepository userRepository;
 
     @Override
-    public User createUser(UserDto userDto) {
+    public User createUser(UserRequest userRequest) {
 
 
         User user= new User();
 
-        user.setUserName(userDto.getUserName());
-        user.setPassword(userDto.getPassword());
-        user.setUserType(userDto.getUserType());
+        user.setUserName(userRequest.getUserName());
+        user.setPassword(userRequest.getPassword());
+        user.setUserType(userRequest.getUserType());
 
 
          return userRepository.save(user);
