@@ -6,9 +6,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "todos")
 @Getter
 @Setter
+@Table(name = "todos")
 public class Todo {
 
     @Id
@@ -21,5 +21,8 @@ public class Todo {
 
     @Column(name = "todoTask")
     private String todoTask;
+
+    @Column(name = "done")
+    private Boolean done=false;
 
 }

@@ -30,4 +30,7 @@ public class User {
     @Column(name = "user_type")
     private UserType userType;
 
+    @OneToMany
+    private List<Todo> todoList= new ArrayList<>();
+
 }
