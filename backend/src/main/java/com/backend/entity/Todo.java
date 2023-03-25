@@ -19,9 +19,6 @@ public class Todo {
     @Column(name = "todoId")
     private Long todoId;
 
-    @Column(name = "todoTitle")
-    private String todoTitle;
-
     @Column(name = "todoTask")
     private String todoTask;
 

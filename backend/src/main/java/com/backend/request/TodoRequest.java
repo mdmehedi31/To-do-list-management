@@ -8,6 +8,5 @@ import lombok.Setter;
 @Setter
 public class TodoRequest {
 
-    private String todoTitle;
     private String todoTask;
 }
