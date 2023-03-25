@@ -24,4 +24,9 @@ public class Todo {
 
     @Column(name = "todoTask")
     private String todoTask;
+
+    @Column(name = "task_done")
+    private Boolean done=false;
+
+
 }

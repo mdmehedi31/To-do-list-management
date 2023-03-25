@@ -30,7 +30,7 @@ public class User {
     @Column(name = "user_type")
     private UserType userType;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Todo> todoList= new ArrayList<>();
 
 }

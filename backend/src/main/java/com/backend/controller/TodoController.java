@@ -35,12 +35,27 @@ public class TodoController {
 
     @DeleteMapping("/delete/{userId}/{todoId}")
     public void deleteTodo(@PathVariable Long userId,@PathVariable Long todoId){
-
-        User user= this.userRepository.findById(userId).orElseThrow(()->new NoSuchElementException());
-        Todo todo= this.todoRepository.findById(todoId).orElseThrow(()->new NoSuchElementException());
-        user.getTodoList().remove(todo);
-        this.todoRepository.delete(todo);
+        this.addTodoService.deleteTodo(userId,todoId);
     }
 
 
+    @GetMapping("/get")
+    public List<Todo> getTodoByUserId(){
+
+        return this.todoRepository.findAll();
+    }
+
+    @PostMapping("/done/{userId}/{todoId}")
+    public void todoDone(@PathVariable Long todoId, @PathVariable Long userId){
+
+        User user=this.userRepository.findById(userId).orElseThrow(()-> new NoSuchElementException());
+
+        System.out.println("User is "+user.getUserName()+" "+user.getPassword()+" "+user.getUserType());
+        Todo todo=  user.getTodoList().
+                stream().
+                filter(todo1 -> todo1.getTodoId().equals(todoId)).findFirst().orElseThrow();
+
+        todo.setDone(!todo.getDone());
+        todoRepository.save(todo);
+    }
 }
