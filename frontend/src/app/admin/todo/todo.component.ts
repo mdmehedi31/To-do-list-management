@@ -99,4 +99,15 @@ this.todoService.getListWebSocket().subscribe((data) => {
           console.log("_tid is : "+_tId);
         }
      )};
+
+     adminDone(todoItem:any){
+      this.todoService.isAdminDone(todoItem.done,todoItem.todoId).subscribe(
+        ()=>{
+          alert("ckecked successfully");
+        },
+        (error)=>{
+          alert(error);
+        }
+      )
+     }
 }

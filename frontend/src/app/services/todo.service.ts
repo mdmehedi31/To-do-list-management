@@ -60,4 +60,9 @@ export class TodoService {
   public deleteTodo(_tId:Number){
     return this.http.delete(`${baseUrl}/todo/delete/`+352+`/${_tId}`);
   }
+
+  public isAdminDone(isChecked:boolean,todoId:Number){
+
+    return this.http.post(`${baseUrl}/todo/done/`+352+`/${todoId}`,isChecked);
+  }
 }

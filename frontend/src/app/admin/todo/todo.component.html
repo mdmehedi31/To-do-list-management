@@ -26,7 +26,7 @@
                 <ul>
                   <li *ngFor="let item of todos">
                     <label>
-                      <input type="checkbox" [(ngModel)]="item.done">{{ item.todoTask }}
+                      <input type="checkbox" (click)="adminDone(item)" [(ngModel)]="item.done">{{ item.todoTask }}
                     </label>
                     <button mat-raised-button color="warn" class="ml20" (click)="deleteTodo(item.todoId)">DELETE</button>
                   </li>
