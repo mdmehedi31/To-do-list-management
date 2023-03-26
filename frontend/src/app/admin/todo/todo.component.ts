@@ -16,9 +16,32 @@ export class TodoComponent implements OnInit {
     done:false
   }
 
+  public todos=[
+    {
+      todoId:0,
+      todoTask:'',
+      done:false
+    }
+  ]
+
+
+
   ngOnInit(): void {
     
-  }
+
+     this.todoService.getTodoList().subscribe((data:any)=>{
+      
+      this.todos=data;
+      console.log(this.todos);
+     },
+     (error)=>{
+      console.log(error);
+     }
+
+  )
+
+
+}
 
   formSubmit(){
   
@@ -26,6 +49,7 @@ export class TodoComponent implements OnInit {
       alert("todo title is required");
       return;
     }
+    
 
     //add todo
     this.todoService.addTodo(this.todo).subscribe(
@@ -41,5 +65,18 @@ export class TodoComponent implements OnInit {
 
   }
 
+  //delete todo
+ deleteTodo(_tId:Number){
 
+     this.todoService.deleteTodo(_tId).subscribe(
+      (data)=>{
+        this.todos= this.todos.filter((todoService)=>todoService.todoId!=_tId);
+        alert("delete Successfully");
+      },
+        (error)=>{
+
+          console.log("error is "+error);
+          console.log("_tid is : "+_tId);
+        }
+     )};
 }

@@ -51,7 +51,7 @@ public class TodoController {
 
         User user=this.userRepository.findById(userId).orElseThrow(()-> new NoSuchElementException());
 
-        System.out.println("User is "+user.getUserName()+" "+user.getPassword()+" "+user.getUserType());
+       // System.out.println("User is "+user.getUserName()+" "+user.getPassword()+" "+user.getUserType());
         Todo todo=  user.getTodoList().
                 stream().
                 filter(todo1 -> todo1.getTodoId().equals(todoId)).findFirst().orElseThrow();

@@ -3,22 +3,35 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 offset-md-3">
+                
                 <h1 class="text-center">Hello this is todo</h1>
                
-                {{todo | json}}
-                 <form (ngSubmit)="formSubmit()">
+                
+                    <form (ngSubmit)="formSubmit()">
 
-                    <mat-form-field appearance="outline">
-                        <mat-label>Todo title</mat-label>
-                        <input 
-                        [(ngModel)]="todo.todoTask"
-                        name="todoTask"
-                        matInput 
-                        placeholder="todo title">
-                    </mat-form-field>
-                    <button mat-raised-button color="primary">Add</button>
-                 </form>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Todo title</mat-label>
+                            <input 
+                            [(ngModel)]="todo.todoTask"
+                            name="todoTask"
+                            matInput 
+                            placeholder="todo title">
+                        </mat-form-field>
+                        <button mat-raised-button color="primary">Add</button>
+                        </form>
             </div>
+
+            <div *ngIf="todos">
+                <h2>My Data</h2>
+                <ul>
+                  <li *ngFor="let item of todos">
+                    <label>
+                      <input type="checkbox" [(ngModel)]="item.done">{{ item.todoTask }}
+                    </label>
+                    <button mat-raised-button color="warn" class="ml20" (click)="deleteTodo(item.todoId)">DELETE</button>
+                  </li>
+                </ul>
+              </div>
         </div>
     </div>
 </div>

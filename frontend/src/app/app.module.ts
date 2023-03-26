@@ -8,7 +8,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { UserComponent } from './user/user.component';
+import { UserComponent } from './Users/users/user.component';
 import {HttpClientModule} from '@angular/common/http';
 import { TodoComponent } from './admin/todo/todo.component'
 import { FormsModule } from '@angular/forms';

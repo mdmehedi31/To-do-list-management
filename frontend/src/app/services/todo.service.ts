@@ -15,4 +15,17 @@ export class TodoService {
 
     return this.http.post(`${baseUrl}/todo/add/`+202,todo);
   }
+
+  // get todoList
+
+  public getTodoList(){
+
+    return this.http.get(`${baseUrl}/todo/get`);
+  }
+
+  //delete todo
+
+  public deleteTodo(_tId:Number){
+    return this.http.delete(`${baseUrl}/todo/delete/`+202+`/${_tId}`);
+  }
 }

@@ -17,15 +17,13 @@ public class UserController {
 
     @PostMapping("/create")
     public User createUser(@RequestBody UserRequest userRequest){
-
         return this.createUserService.createUser(userRequest);
     }
 
     @GetMapping("/getuser/{username}")
     public User getUser(@PathVariable("username") String userName){
-
-
        return  this.createUserService.getUser(userName);
-
     }
+
+
 }
