@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 
-                <h1 class="text-center">Hello this is todo</h1>
+                <h1 class="text-center">ADMIN todo</h1>
                
                 
                     <form (ngSubmit)="formSubmit()">
@@ -23,14 +23,20 @@
 
             <div *ngIf="todos">
                 <h2>My Data</h2>
-                <ul>
-                  <li *ngFor="let item of todos">
+                <table>
+                  
+                    <tr *ngFor="let item of todos">
+                      <td>
                     <label>
                       <input type="checkbox" (click)="adminDone(item)" [(ngModel)]="item.done">{{ item.todoTask }}
                     </label>
+                  </td>
+                  <td>
                     <button mat-raised-button color="warn" class="ml20" (click)="deleteTodo(item.todoId)">DELETE</button>
-                  </li>
-                </ul>
+                  </td>
+                  </tr>
+                 
+                </table>
               </div>
         </div>
     </div>

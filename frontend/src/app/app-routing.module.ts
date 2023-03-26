@@ -3,27 +3,28 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { TodoComponent } from './admin/todo/todo.component';
-import { UserComponent } from './Users/users/user.component';
+import { UserComponent } from './admin/usertask/user.component';
+import { PanelComponent } from './admin/panel/panel.component';
 
 
 
 const routes: Routes =[
 
-  {
-    path: 'login',
-    component: LoginComponent,
-    pathMatch: 'full'
 
-  },
   {
-    path:'todo',
-    component:TodoComponent,
-    pathMatch:'full'
-  },
-  {
-    path:'user',
-    component:UserComponent,
-    pathMatch:'full'
+    path:'admin',
+    component:PanelComponent,
+    children:[
+      {
+        path: 'todo',
+        component: TodoComponent
+      },
+      {
+        path:'usertask',
+        component: UserComponent
+      }
+    ]
+    
   }
 ];
 
