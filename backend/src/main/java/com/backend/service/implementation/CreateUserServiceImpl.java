@@ -1,5 +1,6 @@
 package com.backend.service.implementation;
 
+import com.backend.enums.UserType;
 import com.backend.request.UserRequest;
 import com.backend.entity.User;
 import com.backend.repository.UserRepository;
@@ -18,15 +19,21 @@ public class CreateUserServiceImpl implements CreateUserService {
     @Override
     public User createUser(UserRequest userRequest) {
 
+            User user1= new User();
+            user1.setUserName("admin");
+            user1.setPassword("12345");
+            user1.setUserType(UserType.ADMIN);
+            userRepository.save(user1);
 
-        User user= new User();
 
-        user.setUserName(userRequest.getUserName());
-        user.setPassword(userRequest.getPassword());
-        user.setUserType(userRequest.getUserType());
+            User user2= new User();
+            user2.setUserName("user1");
+            user2.setPassword("2345");
+            user2.setUserType(UserType.USER);
+            userRepository.save(user2);
 
 
-         return userRepository.save(user);
+         return user1;
 
     }
 

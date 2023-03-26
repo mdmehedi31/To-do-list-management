@@ -8,6 +8,8 @@ import com.backend.repository.UserRepository;
 import com.backend.request.TodoRequest;
 import com.backend.service.definition.AddTodoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,7 +42,10 @@ public class TodoController {
     }
 
 
-    @GetMapping("/get")
+    /*@GetMapping("/get")
+    @SendTo("/topic/messages")*/
+
+    @MessageMapping("/get")
     public List<Todo> getTodoByUserId(){
 
         return this.todoRepository.findAll();

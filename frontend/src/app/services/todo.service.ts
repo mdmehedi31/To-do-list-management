@@ -1,13 +1,22 @@
+// <reference types="@types/stompjs" />
+
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import baseUrl from './helper';
+import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
+import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoService {
+  stompClient: any;
 
-  constructor(private http:HttpClient) { }
+  
+  
+  constructor(private http:HttpClient) {}
 
   //add todo
 
@@ -18,11 +27,20 @@ export class TodoService {
 
   // get todoList
 
+
+  public getTodoListWebsocket(): Observable<any> {
+    const subject = webSocket(`${baseUrl}/todo/get`);
+
+    return subject.asObservable();
+  }
+  
+  
+/*
   public getTodoList(){
 
     return this.http.get(`${baseUrl}/todo/get`);
   }
-
+*/
   //delete todo
 
   public deleteTodo(_tId:Number){
