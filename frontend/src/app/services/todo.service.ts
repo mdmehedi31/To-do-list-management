@@ -14,27 +14,27 @@ import { Subject } from 'rxjs';
 export class TodoService {
   stompClient: any;
 
-  
-  
+
+
   constructor(private http:HttpClient) {
     /*
     const ws=new WebSocket('ws:/localhost:8082/ws');
     const stompClient= new Client();
     this.stompClient.webSocketFactory = () => ws;
     this.stompClient.activate();
- 
+
 */
 
    }
 
   //add todo
   public addTodo(todo:any){
- 
+
     //352 is ADMIN user id, please add your own id which will generate
     return this.http.post(`${baseUrl}/todo/add/`+352,todo);
   }
 
-  
+
 
 /*
   getListWebSocket() {
@@ -47,7 +47,7 @@ export class TodoService {
     this.stompClient.publish({ destination: '/app/todo/get' });
     return subject.asObservable();
   }
-  
+
 */
 // get todoList
   public getTodoList(){
@@ -56,11 +56,13 @@ export class TodoService {
   }
 
   //delete todo
-  //352 is ADMIN user id, please add your own id which will generate
+  //352 is ADMIN user id, please add your own id which will generate In Your DB
   public deleteTodo(_tId:Number){
     return this.http.delete(`${baseUrl}/todo/delete/`+352+`/${_tId}`);
   }
 
+  //checkbox checked
+  //352 is ADMIN user id, please add your own Id while will generate in your DB
   public isAdminDone(isChecked:boolean,todoId:Number){
 
     return this.http.post(`${baseUrl}/todo/done/`+352+`/${todoId}`,isChecked);
