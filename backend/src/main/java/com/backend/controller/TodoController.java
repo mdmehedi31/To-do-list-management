@@ -15,6 +15,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/todo")
+@CrossOrigin("*")
 public class TodoController {
 
 

@@ -1,0 +1,24 @@
+
+<div class="bootstrap-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h1 class="text-center">Hello this is todo</h1>
+               
+                {{todo | json}}
+                 <form (ngSubmit)="formSubmit()">
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Todo title</mat-label>
+                        <input 
+                        [(ngModel)]="todo.todoTask"
+                        name="todoTask"
+                        matInput 
+                        placeholder="todo title">
+                    </mat-form-field>
+                    <button mat-raised-button color="primary">Add</button>
+                 </form>
+            </div>
+        </div>
+    </div>
+</div>
