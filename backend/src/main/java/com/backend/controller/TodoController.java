@@ -42,10 +42,13 @@ public class TodoController {
     }
 
 
-    /*@GetMapping("/get")
+    /*
+    @MessageMapping("/get")
+
     @SendTo("/topic/messages")*/
 
-    @MessageMapping("/get")
+
+    @GetMapping("/get")
     public List<Todo> getTodoByUserId(){
 
         return this.todoRepository.findAll();

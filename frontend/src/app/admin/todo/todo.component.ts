@@ -28,7 +28,7 @@ export class TodoComponent implements OnInit {
 
   ngOnInit(): void {
     
-/*
+
      this.todoService.getTodoList().subscribe((data:any)=>{
       
       this.todos=data;
@@ -39,7 +39,9 @@ export class TodoComponent implements OnInit {
      }
 
   )
-*/
+
+
+/*
 this.todoService.getTodoListWebsocket().subscribe(
   (response: any) => {
     this.todos = response;

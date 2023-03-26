@@ -20,10 +20,7 @@ public class BackendApplication implements CommandLineRunner{
     private UserRepository userRepository;
     public static void main(String[] args) {
         SpringApplication.run(BackendApplication.class, args);
-
-        System.out.println("Hello Code is running..");
-
-    }
+            }
     @Override
     public void run(String... args) throws Exception {
 
