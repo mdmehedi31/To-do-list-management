@@ -26,9 +26,9 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @Enumerated(EnumType.STRING)
+    //@Enumerated(EnumType.STRING)
     @Column(name = "user_type")
-    private UserType userType;
+    private String userType;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Todo> todoList= new ArrayList<>();

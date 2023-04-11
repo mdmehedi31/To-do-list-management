@@ -8,8 +8,7 @@ import com.backend.repository.UserRepository;
 import com.backend.request.TodoRequest;
 import com.backend.service.definition.AddTodoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +18,6 @@ import java.util.NoSuchElementException;
 @RequestMapping("/todo")
 @CrossOrigin("*")
 public class TodoController {
-
 
     @Autowired
     private AddTodoService addTodoService;
@@ -31,12 +29,14 @@ public class TodoController {
     private TodoRepository todoRepository;
 
     @PostMapping("/add/{userId}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public void addTodo(@PathVariable Long userId, @RequestBody TodoRequest todoRequest){
       Todo addTodo=  this.addTodoService.addTodo(userId,todoRequest);
 
     }
 
     @DeleteMapping("/delete/{userId}/{todoId}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public void deleteTodo(@PathVariable Long userId,@PathVariable Long todoId){
         this.addTodoService.deleteTodo(userId,todoId);
     }
@@ -49,17 +49,21 @@ public class TodoController {
 
 
     @GetMapping("/get")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_USER')")
     public List<Todo> getTodoByUserId(){
-
         return this.todoRepository.findAll();
     }
 
 
+    //{userId}
     @PostMapping("/done/{userId}/{todoId}")
-    public void todoDone(@PathVariable Long todoId, @PathVariable Long userId){
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_USER')")
+    public void todoDone(@PathVariable Long userId, @PathVariable Long todoId){
 
-        User user=this.userRepository.findById(userId).orElseThrow(()-> new NoSuchElementException());
+        User user=this.userRepository.findById(userId).orElseThrow(()->
+                new NoSuchElementException(userId+" this id is not found."));
 
+        System.out.println("user details is : "+user.getUserName()+" "+user.getUserId()+" "+user.getPassword());
        // System.out.println("User is "+user.getUserName()+" "+user.getPassword()+" "+user.getUserType());
         Todo todo=  user.getTodoList().
                 stream().
