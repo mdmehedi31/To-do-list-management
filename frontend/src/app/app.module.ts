@@ -15,6 +15,8 @@ import { FormsModule } from '@angular/forms';
 import { Todo1Component } from './admin/todo1/todo1.component';
 import { Users1Component } from './Users/users1/users1.component';
 import { PanelComponent } from './admin/panel/panel.component';
+import { HomeComponent } from './pages/home/home.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -26,6 +28,7 @@ import { PanelComponent } from './admin/panel/panel.component';
     Todo1Component,
     Users1Component,
     PanelComponent,
+    HomeComponent,
 
   ],
   imports: [
@@ -36,7 +39,8 @@ import { PanelComponent } from './admin/panel/panel.component';
     MatFormFieldModule,
     MatInputModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MatSnackBarModule
 
   ],
   providers: [],

@@ -1,27 +1,44 @@
 <div class="bootstrap-wrapper">
     <div class="container">
         <div class="row">
-            <div class="col-md6 offset-md-3 text-center">
+            <div class="col-md-6 offset-md-3">
 
                 
                 <h1 class="text-center">Login </h1>
 
-                <form action="">
+
+                {{loginData | json}}
+
+                <form (ngSubmit)="formSubmit()">
                    
                 <mat-form-field class="full-width" appearance="outline">
                     <label>User Name</label>
                     
-                    <input type="text" required matInput placeholder="user name">
+                    <input
+                    [(ngModel)]="loginData.userName"
+                    name="username"
+                    type="text" 
+                    required
+                    matInput 
+                    placeholder="user name">
                     
                 </mat-form-field>
-                    <br>
+                  
                 <mat-form-field class="full-width" appearance="outline">
                     <label>User Password</label>
-                    <input type="password" required matInput placeholder="password">
+                    <input 
+                    [(ngModel)]="loginData.password"
+                    name="password"
+                    type="password"
+                     required
+                     matInput 
+                     placeholder="password">
                 </mat-form-field>
 
-                <div class="container">
-                    <button mat-raised-button color="primary" type="submit">Login</button>
+                <div class="container text-center">
+                    <button mat-raised-button color="primary" type="submit">
+                    Login
+                    </button>
                 </div>
             </form>
             </div>

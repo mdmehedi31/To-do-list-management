@@ -5,12 +5,17 @@ import { LoginComponent } from './pages/login/login.component';
 import { TodoComponent } from './admin/todo/todo.component';
 import { UserComponent } from './admin/usertask/user.component';
 import { PanelComponent } from './admin/panel/panel.component';
+import { HomeComponent } from './pages/home/home.component';
 
 
 
 const routes: Routes =[
 
-
+  {
+    path:'',
+    component:LoginComponent,
+    pathMatch:'full',
+  },
   {
     path:'admin',
     component:PanelComponent,
@@ -22,10 +27,9 @@ const routes: Routes =[
       {
         path:'usertask',
         component: UserComponent
-      }
+      },
     ]
-    
-  }
+  },
 ];
 
 @NgModule({
