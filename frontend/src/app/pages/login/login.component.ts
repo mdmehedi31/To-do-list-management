@@ -27,38 +27,32 @@ export class LoginComponent implements OnInit{
 
     if(this.loginData.userName.trim()=='' ||
     this.loginData.userName==null){
-       
        this.snack.open('Username is required!!','',{
         duration:3000,
        });
-
        return;
     }
 
     if(this.loginData.password.trim()=='' ||
     this.loginData.password==null){
-       
        this.snack.open('Password is required!!','',{
         duration:3000,
        });
-
        return;
     }
 
     //generate token
-
-
     this.loginService.generateToken(this.loginData).subscribe(
-
       (data:any)=>{
         console.log("success");
+        console.log("your generated token is ...");
         console.log(data);
       },
       (error)=>{
         console.log("Error !!...");
+        console.log("You got a error while you generate token in your system....");
         console.log(error);
       }
     )
-
   }
 }

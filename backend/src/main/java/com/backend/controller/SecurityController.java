@@ -18,24 +18,21 @@ public class SecurityController {
 
     @Autowired
     private AuthenticationManager authenticationManager;
-
     @Autowired
     private JwtService jwtService;
-
     @PostMapping("/authenticate")
     public ResponseEntity<?> authenticate(@RequestBody AuthRequest authRequest){
 
         /*
-        *UserDetails userDetails =this.userDetailsService.loadUserByUsername(jwtRequest.getUsername());
+        UserDetails userDetails =this.userDetailsService.loadUserByUsername(jwtRequest.getUsername());
         String token= this.jwtService.generateToken(userDetails);
         return ResponseEntity.ok(new JwtResponse(token));
-        * */
+        */
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(authRequest.getUserName(),
                         authRequest.getPassword()));
 
         if (authentication.isAuthenticated()){
-
             String token = this.jwtService.generateToken(authRequest.getUserName());
             return ResponseEntity.ok(token);
           //  return jwtService.generateToken(authRequest.getUserName());
@@ -43,6 +40,4 @@ public class SecurityController {
             throw new UsernameNotFoundException("Invalid user name and password");
         }
     }
-
-
 }

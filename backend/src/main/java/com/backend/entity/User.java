@@ -1,7 +1,6 @@
 package com.backend.entity;
 
 
-import com.backend.enums.UserType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
